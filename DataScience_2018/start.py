@@ -6,7 +6,7 @@ eucl = euclidian.Euclidian()
 pear = pearson.Pearson()
 
 dataset1 = [5,-1,1,3,5]
-dataset2 = [2,5,4,3,None]
+dataset2 = [2,5,4,3,0]
 
 ##########################################
 
