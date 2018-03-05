@@ -2,7 +2,9 @@ import math
 
 class Pearson:
   def strategy(self,p,q):
-    return self.differences(p,q)
+    rmZ = self.removeZeroes(p,q)
+
+    return self.differences(rmZ[0],rmZ[1])
 
   def differences(self,p,q):
     a = b = c = n = x = y = 0
@@ -25,3 +27,15 @@ class Pearson:
       
 
     return topPart / bottomPart
+
+  def removeZeroes(self,p,q):
+    n = 0
+    modifiedP = []
+    modifiedQ = []
+    for item in p:
+      n+= 1
+      if (type(item) == type(q[n - 1])) and (item != None) and (q[n-1] !=  None):
+        if (item > 0 and q[n-1] > 0):
+          modifiedP += [item]
+          modifiedQ += [q[n-1]]
+    return [modifiedP, modifiedQ]
