@@ -4,6 +4,7 @@ using System.Text;
 
 namespace CSharp
 {
+  
   class ConcreteStrategy1 : IStrategy
   {
     public double algorithm() {
