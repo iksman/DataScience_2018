@@ -16,14 +16,14 @@ class Pearson:
         x += item
         y += q[n-1]
 
-        a += (item * q[p.index(item)])
+        a += (item * q[n-1])
         b += math.pow(item,2)
-        c += math.pow(q[p.index(item)],2)
+        c += math.pow(q[n-1],2) #p.index(item)
 
-      topPart = (a - ((x * y) / n))
-      bottomLeftPart = math.sqrt(b - (math.pow(x,2) / n))
-      bottomRightPart = math.sqrt(c - (math.pow(y,2) / n))
-      bottomPart = bottomLeftPart * bottomRightPart
+    topPart = (a - ((x * y) / n))
+    bottomLeftPart = math.sqrt(b - (math.pow(x,2) / n))
+    bottomRightPart = math.sqrt(c - (math.pow(y,2) / n))
+    bottomPart = bottomLeftPart * bottomRightPart
       
 
     return topPart / bottomPart

@@ -5,6 +5,6 @@ using System.Text;
 namespace CSharp
 {
   interface IStrategy {
-    double algorithm();
+     double algorithm(Tuple<Dictionary<int, float>, Dictionary<int,float>> data);
   }
 }

@@ -79,5 +79,30 @@ namespace CSharp
       return result;
 
     }
+
+    public static Tuple<
+      Dictionary<int,float>,
+      Dictionary<int,float>>
+      splitDictionaries (Dictionary<int,Dictionary<int,float>> data) {
+      //Acting under the pretense that every dataset this method gets
+      //Has gone through the datafilter in DataParser
+      //So we know it always has a matched pair of keys
+      //And 2 comparees
+        int n = 0;
+        var firstItem = new Dictionary<int, float>();
+        var secondItem = new Dictionary<int, float>();
+        
+        foreach (var dataItem in data) {
+          //Console.WriteLine(dataItem.Key);
+          if (n == 0) {
+            firstItem = data[dataItem.Key];
+          } else {
+            secondItem = data[dataItem.Key];
+          }
+          n += 1;
+        }
+
+        return new Tuple<Dictionary<int, float>, Dictionary<int, float>>(firstItem, secondItem);
+    }
   }
 }
