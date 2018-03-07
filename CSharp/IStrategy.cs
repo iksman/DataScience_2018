@@ -8,10 +8,10 @@ namespace CSharp
      double algorithm(Tuple<Dictionary<int, float>, Dictionary<int,float>> data);
   }
 
-  class Data : IStrategy
+  class StrategyContext : IStrategy
   {
     IStrategy strategy;
-    public Data (IStrategy strategy) {
+    public StrategyContext (IStrategy strategy) {
       this.strategy = strategy; 
     }
 
