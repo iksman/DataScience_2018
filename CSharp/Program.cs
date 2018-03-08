@@ -15,9 +15,9 @@ namespace CSharp {
     static void printData(int user1, int user2) { 
       int[] users = {user1, user2};
 
-      Data strategy1 = new Data(new Euclidian());
-      Data strategy2 = new Data(new Manhattan());
-      Data strategy3 = new Data(new Data( new Data(new Pearsson())));
+      StrategyContext strategy1 = new StrategyContext(new Euclidian());
+      StrategyContext strategy2 = new StrategyContext(new Manhattan());
+      StrategyContext strategy3 = new StrategyContext(new StrategyContext( new StrategyContext(new Pearsson())));
       var data = DataParser.write2DArray("./userData.data", ",");
 
       data = DataParser.filterData(data, users[0], users[1], true);

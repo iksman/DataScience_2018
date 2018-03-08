@@ -61,4 +61,25 @@ namespace CSharp
       return (double) topPart / bottomPart;
     }
   }
+
+  class Cosine : IStrategy  {
+    public double algorithm(Tuple<Dictionary<int,float>, Dictionary<int,float>> data) {
+      double topTotal = 0;
+      double leftTotal = 0;
+      double rightTotal = 0;
+      foreach (var item in data.Item1) {
+        var otherItem = data.Item2[item.Key];
+        topTotal += (item.Value * otherItem);
+        leftTotal += Math.Pow(item.Value, 2);
+        rightTotal += Math.Pow(otherItem, 2);
+      }
+
+      double bottomTotal = Math.Sqrt(leftTotal) * Math.Sqrt(rightTotal);
+
+      return (topTotal / bottomTotal);
+
+    }
+  }
+
+
 }
