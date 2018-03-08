@@ -4,8 +4,9 @@ namespace CSharp {
   class Program {
     static void Main(string[] args) {
       
-      printData(1, 2);
-      printData(1, 3);
+      //printData(1, 2);
+      //printData(1, 3);
+      printData(3,4);
 
 
       Console.ReadLine();
@@ -27,9 +28,9 @@ namespace CSharp {
       Console.WriteLine("User " + users[0].ToString() + " -VS- User " + users[1].ToString());
 
       Console.WriteLine("Euclidian - " + strategy1.algorithm(tuple).ToString());
-      Console.WriteLine("Manhattan - " + strategy2.algorithm(tuple).ToString());
+      //Console.WriteLine("Manhattan - " + strategy2.algorithm(tuple).ToString());
 
-      Console.WriteLine("Pearsson - " + strategy3.algorithm(DataParser.splitDictionaries(noDelData)).ToString());
+      Console.WriteLine("Pearsson - " + strategy3.algorithm(tuple).ToString());
       Console.WriteLine();
     }
   }

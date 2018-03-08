@@ -14,7 +14,7 @@ namespace CSharp
         runningTotal += Math.Pow((item.Value - otherItem),2);
       }
 
-      return (double) Math.Sqrt(runningTotal);
+      return (double) 1 / (1 + Math.Sqrt(runningTotal));
     }
   }
 
@@ -27,7 +27,7 @@ namespace CSharp
         runningTotal += (item.Value - otherItem);
       }
 
-      return (double) runningTotal;
+      return (double) 1 / (1 + runningTotal);
     }
   }
 
