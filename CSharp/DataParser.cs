@@ -9,6 +9,7 @@ namespace CSharp
     public static string[] writeArray(string filename) {
       return System.IO.File.ReadAllLines(filename);
     }
+
     public static Dictionary<int,Dictionary<int,float>> write2DArray(string filename, string split) {
       string[] test = writeArray(filename);
       var result = new Dictionary<int,Dictionary<int,float>>();
@@ -28,6 +29,7 @@ namespace CSharp
 
       return result;
     }
+    
     public static Dictionary<int,Dictionary<int,float>> filterData(Dictionary<int,Dictionary<int,float>> data, int keyX, int keyY, bool delete=true) {
       var firstUser = data[keyX];
       var secondUser = data[keyY];

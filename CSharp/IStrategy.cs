@@ -6,9 +6,10 @@ namespace CSharp
 {
   interface IStrategy {
      double algorithm(Tuple<Dictionary<int, float>, Dictionary<int,float>> data);
+
   }
 
-  class StrategyContext : IStrategy
+  class StrategyContext
   {
     IStrategy strategy;
     public StrategyContext (IStrategy strategy) {
@@ -19,5 +20,7 @@ namespace CSharp
     {
       return this.strategy.algorithm(data);
     }
+
+
   }
 }
