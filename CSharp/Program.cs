@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharp { 
   class Program {
@@ -7,7 +9,13 @@ namespace CSharp {
       //printData(1, 2);
       //printData(1, 3);
       printData(3,4);
-
+      printNearest(1);
+      printNearest(2);
+      printNearest(3);
+      printNearest(4);
+      printNearest(5);
+      printNearest(6);
+      printNearest(7);
 
       Console.ReadLine();
     }
@@ -18,7 +26,7 @@ namespace CSharp {
       StrategyContext strategy1 = new StrategyContext(new Euclidian());
       StrategyContext strategy2 = new StrategyContext(new Manhattan());
       StrategyContext strategy3 = new StrategyContext(new Pearsson());
-      StrategyContext strategy4 = new StrategyContext(new Cosine());
+      StrategyContext strategy4 = new StrategyContext(new Cosine(), false);
       var data = DataParser.write2DArray("./userData.data", ",");
 
       data = DataParser.filterData(data, users[0], users[1], true);
@@ -34,6 +42,27 @@ namespace CSharp {
       Console.WriteLine("Pearsson - " + strategy3.algorithm(tuple).ToString());
       Console.WriteLine("Cosine   - " + strategy4.algorithm(noDelTuple));
       Console.WriteLine();
+    }
+
+    static void printNearest(int target) {
+      StrategyContext strategy1 = new StrategyContext(new Euclidian());
+      StrategyContext strategy2 = new StrategyContext(new Manhattan());
+      StrategyContext strategy3 = new StrategyContext(new Pearsson());
+      StrategyContext strategy4 = new StrategyContext(new Cosine(), false);
+      var data = DataParser.write2DArray("./userData.data", ",");
+
+      var NN = strategy4.NearestNeighbor(data, target);
+
+      Console.WriteLine("Nearest Neighbors to " + NN.Item1.ToString());
+      
+      
+      foreach (var item in NN.Item2.OrderByDescending((variable) => variable.similarity)) {
+        Console.WriteLine(item.userId.ToString() + " - " + item.similarity.ToString());
+      }
+      Console.WriteLine();
+
+      
+      
     }
   }
 }
