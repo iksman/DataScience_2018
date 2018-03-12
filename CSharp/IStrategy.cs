@@ -26,6 +26,7 @@ namespace CSharp
 
     public Tuple<int,List<Neighbor>> NearestNeighbor(Dictionary<int,Dictionary<int,float>> data, int target, double threshold = 0.35, int amount = 3) {
       List<Neighbor> neighbors = new List<Neighbor>();
+      var currentThreshold = threshold;
       if (data.ContainsKey(target)) { 
         foreach (var item in data) { 
           if (item.Key != target) {
@@ -33,11 +34,14 @@ namespace CSharp
 
             double result = this.strategy.algorithm(filterData);
             
-            if (result > threshold) {
-              neighbors.Add(new Neighbor(item.Key, result));
-              if (neighbors.Count > amount) {
+            if (result > currentThreshold) {
+              if (neighbors.Count == amount) {
                 var lowestNeighbor = neighbors.Aggregate((item1, item2) => item1.similarity < item2.similarity ? item1 : item2);
                 neighbors.Remove(lowestNeighbor);
+                neighbors.Add(new Neighbor(item.Key, result));
+                currentThreshold = neighbors.Aggregate((item1, item2) => item1.similarity < item2.similarity ? item1 : item2).similarity;
+              } else {
+                neighbors.Add(new Neighbor(item.Key, result));
               }
             }
           }
