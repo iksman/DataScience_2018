@@ -15,6 +15,7 @@ namespace CSharp {
       printPrediction(7, new StrategyContext(new Pearsson()), 106);
       printPrediction(4, new StrategyContext(new Pearsson()), 101);
       printPrediction(7, new StrategyContext(new Pearsson()), 106);
+      Console.WriteLine(ItemItem.deviations(106, 103));
       //printNearest(7, new StrategyContext(new Cosine(), false));
       //printNearest(7, new StrategyContext(new Euclidian()));
       Console.ReadLine();
