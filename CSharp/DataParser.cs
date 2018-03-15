@@ -41,6 +41,16 @@ namespace CSharp
       return result;
     }
     
+    public static Dictionary<int, Dictionary<int, float>> filterTwoProducts(Dictionary<int, Dictionary<int, float>> data, int productId1, int productId2) {
+      Dictionary<int, Dictionary<int, float>> result = new Dictionary<int, Dictionary<int, float>>();
+      foreach (var user in data) {
+        if (user.Value.ContainsKey(productId1) && user.Value.ContainsKey(productId2)) {
+          result.Add(user.Key, user.Value);
+        }
+      }
+      return result;
+    }
+
     public static Dictionary<int, Dictionary<int,float>> filterRatings(Dictionary<int, Dictionary<int, float>> data, int productId, int target) {
       Dictionary<int, Dictionary<int,float>> result = new Dictionary<int, Dictionary<int, float>>();
       foreach (var user in data) {
