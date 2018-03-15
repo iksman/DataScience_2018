@@ -28,20 +28,20 @@ namespace CSharp
       List<Neighbor> neighbors = new List<Neighbor>();
       var currentThreshold = threshold;
       if (data.ContainsKey(target)) { 
-        foreach (var item in data) { 
-          if (item.Key != target) {
-            var filterData = DataParser.splitDictionaries(DataParser.filterData(data, target, item.Key, this.delete));
+        foreach (var user in data) { 
+          if (user.Key != target) {
+            var filterData = DataParser.splitDictionaries(DataParser.filterData(data, target, user.Key, this.delete));
 
             double result = this.strategy.algorithm(filterData);
-            
-            if (result > currentThreshold) {
+            var dataaaa = data[target];
+            if (result > currentThreshold && user.Value.Except(data[target]).Count() > 0) {
               if (neighbors.Count == amount) {
                 var lowestNeighbor = neighbors.Aggregate((item1, item2) => item1.similarity < item2.similarity ? item1 : item2);
                 neighbors.Remove(lowestNeighbor);
-                neighbors.Add(new Neighbor(item.Key, result));
+                neighbors.Add(new Neighbor(user.Key, result));
                 currentThreshold = neighbors.Aggregate((item1, item2) => item1.similarity < item2.similarity ? item1 : item2).similarity;
               } else {
-                neighbors.Add(new Neighbor(item.Key, result));
+                neighbors.Add(new Neighbor(user.Key, result));
               }
             }
           }

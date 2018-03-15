@@ -9,14 +9,9 @@ namespace CSharp {
       //printData(1, 2);
       //printData(1, 3);
       printData(3,4);
-      printNearest(1);
-      printNearest(2);
-      printNearest(3);
-      printNearest(4);
-      printNearest(5);
-      printNearest(6);
-      printNearest(7);
-
+      printNearest(7, new StrategyContext(new Cosine(), false));
+      printNearest(7, new StrategyContext(new Pearsson()));
+      printNearest(7, new StrategyContext(new Euclidian()));
       Console.ReadLine();
     }
 
@@ -44,25 +39,16 @@ namespace CSharp {
       Console.WriteLine();
     }
 
-    static void printNearest(int target) {
-      StrategyContext strategy1 = new StrategyContext(new Euclidian());
-      StrategyContext strategy2 = new StrategyContext(new Manhattan());
-      StrategyContext strategy3 = new StrategyContext(new Pearsson());
-      StrategyContext strategy4 = new StrategyContext(new Cosine(), false);
+    static void printNearest(int target, StrategyContext strategy) {
       var data = DataParser.write2DArray("./userData.data", ",");
-
-      var NN = strategy4.NearestNeighbor(data, target);
-
+      var NN = strategy.NearestNeighbor(data, target);
       Console.WriteLine("Nearest Neighbors to " + NN.Item1.ToString());
       
       
       foreach (var item in NN.Item2.OrderByDescending((variable) => variable.similarity)) {
         Console.WriteLine(item.userId.ToString() + " - " + item.similarity.ToString());
       }
-      Console.WriteLine();
-
-      
-      
+      Console.WriteLine();     
     }
   }
 }
