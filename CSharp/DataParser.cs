@@ -31,6 +31,19 @@ namespace CSharp
       return result;
     }
 
+    public static List<int> getProducts(Dictionary<int, Dictionary<int,float>> data) {
+      List<int> result = new List<int>();
+      foreach (var user in data) {
+        foreach (var product in user.Value) {
+          if (result.Contains(product.Key) != true) { 
+            result.Add(product.Key);
+          }
+        }
+      }
+      result.Sort();
+      return result;
+    }
+
     public static Dictionary<int, Dictionary<int, float>> filterRatings(Dictionary<int, Dictionary<int, float>> data, int productId) {
       Dictionary<int, Dictionary<int, float>> result = new Dictionary<int, Dictionary<int, float>>();
       foreach (var user in data) {

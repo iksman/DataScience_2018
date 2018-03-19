@@ -8,16 +8,20 @@ namespace CSharp {
       
       //printData(1, 2);
       //printData(1, 3);
-      printData(3,4);
-      printNearest(7, new StrategyContext(new Pearsson()));
-      printPrediction(7, new StrategyContext(new Pearsson()), 101);
-      printPrediction(7, new StrategyContext(new Pearsson()), 103);
-      printPrediction(7, new StrategyContext(new Pearsson()), 106);
-      printPrediction(4, new StrategyContext(new Pearsson()), 101);
-      printPrediction(7, new StrategyContext(new Pearsson()), 106);
-      Console.WriteLine(ItemItem.deviations(106, 103));
+      //printData(3,4);
+      //printNearest(7, new StrategyContext(new Pearsson()));
+      //printPrediction(7, new StrategyContext(new Pearsson()), 101);
+      //printPrediction(7, new StrategyContext(new Pearsson()), 103);
+      //printPrediction(7, new StrategyContext(new Pearsson()), 106);
+      //printPrediction(4, new StrategyContext(new Pearsson()), 101);
+      printPrediction(1, new StrategyContext(new Euclidian()), 101);
+      //Console.WriteLine(ItemItem.deviations(106, 103));
       //printNearest(7, new StrategyContext(new Cosine(), false));
       //printNearest(7, new StrategyContext(new Euclidian()));
+      //printNearest(1,new StrategyContext(new Euclidian()));
+      Console.WriteLine(ItemItem.deviations(101,103));
+      ItemItem.scale(new List<double>() { 2.5, 3, 4.25, 5 }, -3, 5);
+      Console.WriteLine(ItemItem.slopeOne(1, 101));
       Console.ReadLine();
     }
 

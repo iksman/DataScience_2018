@@ -10,6 +10,10 @@ namespace CSharp
 
   }
 
+  interface IItemItemStrategy : IStrategy {
+
+  }
+
   class StrategyContext
   {
     public IStrategy strategy;
