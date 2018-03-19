@@ -12,7 +12,7 @@ namespace CSharp
 
   class StrategyContext
   {
-    IStrategy strategy;
+    public IStrategy strategy;
     bool delete;
     public StrategyContext (IStrategy strategy, bool delete = true) {
       this.strategy = strategy; 

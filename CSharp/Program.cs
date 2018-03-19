@@ -42,7 +42,7 @@ namespace CSharp {
     static void printNearest(int target, StrategyContext strategy) {
       var data = DataParser.write2DArray("./userData.data", ",");
       var NN = strategy.NearestNeighbor(data, target);
-      Console.WriteLine("Nearest Neighbors to " + NN.Item1.ToString());
+      Console.WriteLine("Nearest Neighbors to " + NN.Item1.ToString() + " - " + strategy.strategy.GetType());
       
       
       foreach (var item in NN.Item2.OrderByDescending((variable) => variable.similarity)) {
