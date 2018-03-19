@@ -9,9 +9,15 @@ namespace CSharp {
       //printData(1, 2);
       //printData(1, 3);
       printData(3,4);
-      printNearest(7, new StrategyContext(new Cosine(), false));
       printNearest(7, new StrategyContext(new Pearsson()));
-      printNearest(7, new StrategyContext(new Euclidian()));
+      printPrediction(7, new StrategyContext(new Pearsson()), 101);
+      printPrediction(7, new StrategyContext(new Pearsson()), 103);
+      printPrediction(7, new StrategyContext(new Pearsson()), 106);
+      printPrediction(4, new StrategyContext(new Pearsson()), 101);
+      printPrediction(7, new StrategyContext(new Pearsson()), 106);
+      Console.WriteLine(ItemItem.deviations(106, 103));
+      //printNearest(7, new StrategyContext(new Cosine(), false));
+      //printNearest(7, new StrategyContext(new Euclidian()));
       Console.ReadLine();
     }
 
@@ -45,10 +51,17 @@ namespace CSharp {
       Console.WriteLine("Nearest Neighbors to " + NN.Item1.ToString() + " - " + strategy.strategy.GetType());
       
       
+
       foreach (var item in NN.Item2.OrderByDescending((variable) => variable.similarity)) {
         Console.WriteLine(item.userId.ToString() + " - " + item.similarity.ToString());
       }
       Console.WriteLine();     
+    }
+
+    static void printPrediction(int target, StrategyContext strategy, int productId = 101) {
+      var data = DataParser.write2DArray("./userData.data", ",");
+      
+      Console.WriteLine("Predicted Rating user " + target.ToString() + " - Product " + productId.ToString() + " - " + strategy.PredictedRating(data, target, productId).ToString());
     }
   }
 }

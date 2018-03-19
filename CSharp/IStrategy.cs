@@ -38,10 +38,10 @@ namespace CSharp
               if (neighbors.Count == amount) {
                 var lowestNeighbor = neighbors.Aggregate((item1, item2) => item1.similarity < item2.similarity ? item1 : item2);
                 neighbors.Remove(lowestNeighbor);
-                neighbors.Add(new Neighbor(user.Key, result));
+                neighbors.Add(new Neighbor(user.Key, result, user.Value));
                 currentThreshold = neighbors.Aggregate((item1, item2) => item1.similarity < item2.similarity ? item1 : item2).similarity;
               } else {
-                neighbors.Add(new Neighbor(user.Key, result));
+                neighbors.Add(new Neighbor(user.Key, result, user.Value));
               }
             }
           }
@@ -49,6 +49,20 @@ namespace CSharp
         return new Tuple<int,List<Neighbor>>(target, neighbors);
       } else {
         return new Tuple<int, List<Neighbor>>(target, new List<Neighbor>());
+      }
+    }
+
+    public double PredictedRating(Dictionary<int, Dictionary<int, float>> data, int target, int productId) {
+      if (data.ContainsKey(target)) {
+        List<Neighbor> neighbors = NearestNeighbor(DataParser.filterRatings(data, productId, target), target).Item2;
+        double totalWeight = neighbors.Sum((neighbor) => neighbor.similarity);
+        double predictedScore = 0.0f;
+        foreach (Neighbor neighbor in neighbors) {
+          predictedScore += ((neighbor.similarity / totalWeight) * neighbor.review[productId]);
+        }
+        return predictedScore;
+      } else {
+        return 0.0f;
       }
     }
   }
