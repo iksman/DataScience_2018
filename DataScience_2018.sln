@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Python", "DataScience_2018\Python.pyproj", "{1BE9DA43-2FD6-4B9F-9481-BD551F019BCB}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Python", "Python\Python.pyproj", "{1BE9DA43-2FD6-4B9F-9481-BD551F019BCB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharp", "CSharp\CSharp.csproj", "{AE4573D4-6BDB-41B6-A333-AA941119F810}"
 EndProject
