@@ -95,6 +95,9 @@ namespace CSharp
       return result;
     }
 
+    public static void checkData(Dictionary<int, Dictionary<int, float>> data) {
+    }
+
     public static Dictionary<int,Dictionary<int,float>> filterData(Dictionary<int,Dictionary<int,float>> data, int keyX, int keyY, bool delete=true) {
       var firstUser = data[keyX];
       var secondUser = data[keyY];

@@ -5,7 +5,8 @@ using System.Linq;
 namespace CSharp { 
   class Program { 
     static Dictionary<int,Dictionary<int,float>> getData() {
-      return DataParser.write2DArray_MovieLens("./ratings.csv");
+      return DataParser.write2DArray("./userData.data",",");
+      //return DataParser.write2DArray_MovieLens("./ratings.csv");
     }
     
     static void Main(string[] args) {
@@ -13,7 +14,7 @@ namespace CSharp {
       printData(1, 4);
       printData(1, 3);
       printData(3, 4);
-      printPrediction(1, new StrategyContext(new Euclidian()), 150);
+      printPrediction(7, new StrategyContext(new Euclidian()), 101);
       //Console.WriteLine(ItemItem.deviations(31, 1172));
       //ItemItem.scale(new List<double>() { 2.5, 3, 4.25, 5 }, -3, 5);
       //Console.WriteLine(ItemItem.slopeOne(1, 101));
