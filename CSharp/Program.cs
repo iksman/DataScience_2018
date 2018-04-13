@@ -3,25 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace CSharp { 
-  class Program {
+  class Program { 
+    static Dictionary<int,Dictionary<int,float>> getData() {
+      return DataParser.write2DArray_MovieLens("./ratings.csv");
+    }
+    
     static void Main(string[] args) {
-      
-      //printData(1, 2);
-      //printData(1, 3);
-      //printData(3,4);
-      //printNearest(7, new StrategyContext(new Pearsson()));
-      //printPrediction(7, new StrategyContext(new Pearsson()), 101);
-      //printPrediction(7, new StrategyContext(new Pearsson()), 103);
-      //printPrediction(7, new StrategyContext(new Pearsson()), 106);
-      //printPrediction(4, new StrategyContext(new Pearsson()), 101);
-      printPrediction(1, new StrategyContext(new Euclidian()), 101);
-      //Console.WriteLine(ItemItem.deviations(106, 103));
-      //printNearest(7, new StrategyContext(new Cosine(), false));
-      //printNearest(7, new StrategyContext(new Euclidian()));
-      //printNearest(1,new StrategyContext(new Euclidian()));
-      Console.WriteLine(ItemItem.deviations(101,103));
-      ItemItem.scale(new List<double>() { 2.5, 3, 4.25, 5 }, -3, 5);
-      Console.WriteLine(ItemItem.slopeOne(1, 101));
+
+      printData(1, 4);
+      printData(1, 3);
+      printData(3, 4);
+      printPrediction(1, new StrategyContext(new Euclidian()), 150);
+      //Console.WriteLine(ItemItem.deviations(31, 1172));
+      //ItemItem.scale(new List<double>() { 2.5, 3, 4.25, 5 }, -3, 5);
+      //Console.WriteLine(ItemItem.slopeOne(1, 101));
       Console.ReadLine();
     }
 
@@ -32,25 +27,29 @@ namespace CSharp {
       StrategyContext strategy2 = new StrategyContext(new Manhattan());
       StrategyContext strategy3 = new StrategyContext(new Pearsson());
       StrategyContext strategy4 = new StrategyContext(new Cosine(), false);
-      var data = DataParser.write2DArray("./userData.data", ",");
+      Dictionary<int,Dictionary<int,float>> data = Program.getData();
 
       data = DataParser.filterData(data, users[0], users[1], true);
       var noDelData = DataParser.filterData(data, users[0], users[1], false);
 
-      var tuple = DataParser.splitDictionaries(data);
-      var noDelTuple = DataParser.splitDictionaries(noDelData);
+      if (data[users[0]].Values.Count == 0) {
+        Console.WriteLine("There's no overlap between users " + user1.ToString() + " and " + user2.ToString());
+      } else { 
+        var tuple = DataParser.splitDictionaries(data);
+        var noDelTuple = DataParser.splitDictionaries(noDelData);
       
-      Console.WriteLine("User " + users[0].ToString() + " -VS- User " + users[1].ToString());
+        Console.WriteLine("User " + users[0].ToString() + " -VS- User " + users[1].ToString());
 
-      Console.WriteLine("Euclidian - " + strategy1.algorithm(tuple).ToString());
-      //Console.WriteLine("Manhattan - " + strategy2.algorithm(tuple).ToString());
-      Console.WriteLine("Pearsson - " + strategy3.algorithm(tuple).ToString());
-      Console.WriteLine("Cosine   - " + strategy4.algorithm(noDelTuple));
-      Console.WriteLine();
+        Console.WriteLine("Euclidian - " + strategy1.algorithm(tuple).ToString());
+        //Console.WriteLine("Manhattan - " + strategy2.algorithm(tuple).ToString());
+        Console.WriteLine("Pearsson - " + strategy3.algorithm(tuple).ToString());
+        Console.WriteLine("Cosine   - " + strategy4.algorithm(noDelTuple));
+        Console.WriteLine();
+      }
     }
 
     static void printNearest(int target, StrategyContext strategy) {
-      var data = DataParser.write2DArray("./userData.data", ",");
+      var data = Program.getData();
       var NN = strategy.NearestNeighbor(data, target);
       Console.WriteLine("Nearest Neighbors to " + NN.Item1.ToString() + " - " + strategy.strategy.GetType());
       
@@ -63,8 +62,8 @@ namespace CSharp {
     }
 
     static void printPrediction(int target, StrategyContext strategy, int productId = 101) {
-      var data = DataParser.write2DArray("./userData.data", ",");
-      
+      var data = Program.getData();
+
       Console.WriteLine("Predicted Rating user " + target.ToString() + " - Product " + productId.ToString() + " - " + strategy.PredictedRating(data, target, productId).ToString());
     }
   }
