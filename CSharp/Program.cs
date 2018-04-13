@@ -5,8 +5,8 @@ using System.Linq;
 namespace CSharp { 
   class Program { 
     static Dictionary<int,Dictionary<int,float>> getData() {
-      return DataParser.write2DArray("./userData.data",",");
-      //return DataParser.write2DArray_MovieLens("./ratings.csv");
+      //return DataParser.write2DArray("./userData.data",",");
+      return DataParser.write2DArray_MovieLens("./ratings.csv");
     }
     
     static void Main(string[] args) {
@@ -14,10 +14,12 @@ namespace CSharp {
       printData(1, 4);
       printData(1, 3);
       printData(3, 4);
-      printPrediction(7, new StrategyContext(new Euclidian()), 101);
+      printPrediction(7, new StrategyContext(new Cosine()), 101);
+      printNearest(4,new StrategyContext(new Pearsson()), 500);
       //Console.WriteLine(ItemItem.deviations(31, 1172));
       //ItemItem.scale(new List<double>() { 2.5, 3, 4.25, 5 }, -3, 5);
       //Console.WriteLine(ItemItem.slopeOne(1, 101));
+
       Console.ReadLine();
     }
 
@@ -42,16 +44,16 @@ namespace CSharp {
         Console.WriteLine("User " + users[0].ToString() + " -VS- User " + users[1].ToString());
 
         Console.WriteLine("Euclidian - " + strategy1.algorithm(tuple).ToString());
-        //Console.WriteLine("Manhattan - " + strategy2.algorithm(tuple).ToString());
+        Console.WriteLine("Manhattan - " + strategy2.algorithm(tuple).ToString());
         Console.WriteLine("Pearsson - " + strategy3.algorithm(tuple).ToString());
         Console.WriteLine("Cosine   - " + strategy4.algorithm(noDelTuple));
         Console.WriteLine();
       }
     }
 
-    static void printNearest(int target, StrategyContext strategy) {
+    static void printNearest(int target, StrategyContext strategy, int max=3) {
       var data = Program.getData();
-      var NN = strategy.NearestNeighbor(data, target);
+      var NN = strategy.NearestNeighbor(data, target, 0.35, max);
       Console.WriteLine("Nearest Neighbors to " + NN.Item1.ToString() + " - " + strategy.strategy.GetType());
       
       
