@@ -36,7 +36,7 @@ namespace CSharp
           if (user.Key != target) {
             var filterData = DataParser.splitDictionaries(DataParser.filterData(data, target, user.Key, this.delete));
 
-            double result = this.strategy.algorithm(filterData);
+            double result = strategy.algorithm(filterData);
             var dataaaa = data[target];
             if (result > currentThreshold && user.Value.Except(data[target]).Count() > 0) {
               if (neighbors.Count == amount) {

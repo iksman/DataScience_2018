@@ -57,11 +57,12 @@ namespace CSharp
       var topPart = (a - ((x * y) / n));
       var bottomPart = (Math.Sqrt(b - (Math.Pow(x, 2) / n))) * 
                        (Math.Sqrt(c - (Math.Pow(y, 2) / n)));
+
       if (bottomPart == 0) {
         bottomPart = 1;
       }
 
-      return (double) topPart / bottomPart;
+      return topPart / bottomPart;
     }
   }
 

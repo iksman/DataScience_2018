@@ -24,7 +24,7 @@ namespace CSharp
 
         if ( result.TryAdd( int.Parse(lineResult[0]), score)) {
         } else {
-          result[int.Parse(lineResult[0])].Add(int.Parse(lineResult[1]), float.Parse(lineResult[2]));
+          result[int.Parse(lineResult[0])].Add(int.Parse(lineResult[1]), float.Parse(lineResult[2]) / 10);
         }
       }
 
@@ -44,7 +44,7 @@ namespace CSharp
 
         if (result.TryAdd(int.Parse(lineResult[0]), score)) { 
         } else {
-          result[int.Parse(lineResult[0])].Add(int.Parse(lineResult[1]), float.Parse(lineResult[2]));
+          result[int.Parse(lineResult[0])].Add(int.Parse(lineResult[1]), float.Parse(lineResult[2]) / 10);
         }
       }
       return result;
