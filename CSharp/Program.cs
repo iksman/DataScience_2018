@@ -5,7 +5,7 @@ using System.Linq;
 namespace CSharp { 
   class Program { 
     static Dictionary<int,Dictionary<int,float>> getData() {
-      return DataParser.write2DArray("./userData.data",",");
+      return DataParser.write2DArray("./userItem.data",",");
       //return DataParser.write2DArray_MovieLens("./ratings.csv");
     }
     
