@@ -6,7 +6,7 @@ using System.Text;
 namespace CSharp
 {
   interface IStrategy {
-     double algorithm(Tuple<Dictionary<int, float>, Dictionary<int,float>> data);
+     double algorithm(Tuple<Dictionary<int, double>, Dictionary<int, double>> data);
 
   }
 
@@ -23,12 +23,12 @@ namespace CSharp
       this.delete = delete;
     }
 
-    public double algorithm(Tuple<Dictionary<int, float>, Dictionary<int, float>> data)
+    public double algorithm(Tuple<Dictionary<int, double>, Dictionary<int, double>> data)
     {
       return this.strategy.algorithm(data);
     }
 
-    public Tuple<int,List<Neighbor>> NearestNeighbor(Dictionary<int,Dictionary<int,float>> data, int target, double threshold = 0.35, int amount = 3) {
+    public Tuple<int,List<Neighbor>> NearestNeighbor(Dictionary<int,Dictionary<int, double>> data, int target, double threshold = 0.35, int amount = 3) {
       List<Neighbor> neighbors = new List<Neighbor>();
       var currentThreshold = threshold;
       if (data.ContainsKey(target)) { 
@@ -56,7 +56,7 @@ namespace CSharp
       }
     }
 
-    public double PredictedRating(Dictionary<int, Dictionary<int, float>> data, int target, int productId) {
+    public double PredictedRating(Dictionary<int, Dictionary<int, double>> data, int target, int productId) {
       if (data.ContainsKey(target)) {
         List<Neighbor> neighbors = NearestNeighbor(DataParser.filterRatings(data, productId, target), target).Item2;
         double totalWeight = neighbors.Sum((neighbor) => neighbor.similarity);

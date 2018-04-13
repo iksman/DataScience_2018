@@ -6,7 +6,7 @@ namespace CSharp
 {
 
   class Euclidian : IStrategy {
-    public double algorithm(Tuple<Dictionary<int, float>, Dictionary<int, float>> data) {
+    public double algorithm(Tuple<Dictionary<int, double>, Dictionary<int, double>> data) {
       double runningTotal = 0.0;
       foreach (var item in data.Item1) {
         var otherItem = data.Item2[item.Key];
@@ -19,7 +19,7 @@ namespace CSharp
   }
 
   class Manhattan : IStrategy {
-    public double algorithm(Tuple<Dictionary<int, float>, Dictionary<int, float>> data) {
+    public double algorithm(Tuple<Dictionary<int, double>, Dictionary<int, double>> data) {
       double runningTotal = 0.0;
       foreach (var item in data.Item1) {
         var otherItem = data.Item2[item.Key];
@@ -32,7 +32,7 @@ namespace CSharp
   }
 
   class Pearsson : IStrategy {
-    public double algorithm(Tuple<Dictionary<int, float>, Dictionary<int, float>> data) {
+    public double algorithm(Tuple<Dictionary<int, double>, Dictionary<int, double>> data) {
       double x = 0;
       double y = 0;
       double a = 0;
@@ -67,7 +67,7 @@ namespace CSharp
   }
 
   class Cosine : IStrategy  {
-    public double algorithm(Tuple<Dictionary<int,float>, Dictionary<int,float>> data) {
+    public double algorithm(Tuple<Dictionary<int,double>, Dictionary<int,double>> data) {
       double topTotal = 0;
       double leftTotal = 0;
       double rightTotal = 0;

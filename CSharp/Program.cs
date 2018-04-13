@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CSharp { 
   class Program { 
-    static Dictionary<int,Dictionary<int,float>> getData() {
+    static Dictionary<int,Dictionary<int, double>> getData() {
       return DataParser.write2DArray("./userItem.data",",");
       //return DataParser.write2DArray_MovieLens("./ratings.csv");
     }
@@ -28,7 +28,7 @@ namespace CSharp {
       StrategyContext strategy2 = new StrategyContext(new Manhattan());
       StrategyContext strategy3 = new StrategyContext(new Pearsson());
       StrategyContext strategy4 = new StrategyContext(new Cosine(), false);
-      Dictionary<int,Dictionary<int,float>> data = Program.getData();
+      Dictionary<int,Dictionary<int, double>> data = Program.getData();
 
       data = DataParser.filterData(data, users[0], users[1], true);
       var noDelData = DataParser.filterData(data, users[0], users[1], false);
