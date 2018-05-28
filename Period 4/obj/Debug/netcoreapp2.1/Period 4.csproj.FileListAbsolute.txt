@@ -9,3 +9,14 @@ E:\GitHub\DataScience_2018\Period 4\obj\Debug\netcoreapp2.1\Period 4.AssemblyInf
 E:\GitHub\DataScience_2018\Period 4\obj\Debug\netcoreapp2.1\Period 4.AssemblyInfo.cs
 E:\GitHub\DataScience_2018\Period 4\obj\Debug\netcoreapp2.1\Period 4.dll
 E:\GitHub\DataScience_2018\Period 4\obj\Debug\netcoreapp2.1\Period 4.pdb
+D:\Github\DataScience_2018\Period 4\bin\Debug\netcoreapp2.1\Period 4.deps.json
+D:\Github\DataScience_2018\Period 4\bin\Debug\netcoreapp2.1\Period 4.runtimeconfig.json
+D:\Github\DataScience_2018\Period 4\bin\Debug\netcoreapp2.1\Period 4.runtimeconfig.dev.json
+D:\Github\DataScience_2018\Period 4\bin\Debug\netcoreapp2.1\Period 4.dll
+D:\Github\DataScience_2018\Period 4\bin\Debug\netcoreapp2.1\Period 4.pdb
+D:\Github\DataScience_2018\Period 4\obj\Debug\netcoreapp2.1\Period 4.csprojAssemblyReference.cache
+D:\Github\DataScience_2018\Period 4\obj\Debug\netcoreapp2.1\Period 4.csproj.CoreCompileInputs.cache
+D:\Github\DataScience_2018\Period 4\obj\Debug\netcoreapp2.1\Period 4.AssemblyInfoInputs.cache
+D:\Github\DataScience_2018\Period 4\obj\Debug\netcoreapp2.1\Period 4.AssemblyInfo.cs
+D:\Github\DataScience_2018\Period 4\obj\Debug\netcoreapp2.1\Period 4.dll
+D:\Github\DataScience_2018\Period 4\obj\Debug\netcoreapp2.1\Period 4.pdb
