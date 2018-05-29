@@ -11,6 +11,7 @@ namespace Period_4
         public Cluster(int id)
         {
             Id = id;
+            Centroid = new Vector();
             Points = new List<Vector>();
         }
 
