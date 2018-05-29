@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Period_4
@@ -21,6 +22,19 @@ namespace Period_4
             Centroid = centroid;
             Points = new List<Vector>();
 
+        }
+
+        public Cluster(int id, Vector centroid, List<Vector> points)
+        {
+            Id = id;
+            Centroid = centroid;
+            Points = points;
+
+        }
+
+        public Cluster Clone()
+        {
+            return new Cluster(this.Id, this.Centroid, this.Points);
         }
     }
 }

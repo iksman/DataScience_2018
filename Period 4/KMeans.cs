@@ -10,11 +10,18 @@ namespace Period_4{
         public List<Cluster> mainLoop(int centroidCount, int iterations, List<Vector> data){
             List<Cluster> clusters = Statics.InitCluster(centroidCount, Statics.InitCentroids(centroidCount, data[0].Coordinates.Count));
             int currentIterations = 0;
-
+            
             while (currentIterations != iterations){
+                //Having a hard time dividing the classes from their refference to extract only their content
+                //So that the OldCluster class isn't affected when the new cluster gets altered
+                List<int> count = new List<int>();
+                foreach (Cluster cluster in clusters){
+                    count.Add(cluster.Points.Count);
+                }
                 step(data, clusters);
-                Console.WriteLine("aaa");
-                currentIterations++;
+                if (clusters.Select(c => c.Points.Count).ToList().SequenceEqual(count)){
+                    currentIterations++;
+                }                
             }
             
             return clusters;
