@@ -9,7 +9,7 @@ namespace Period_4
         {
             Parser parser = new Parser("./WineData.csv");
             KMeans kmeans = new KMeans();
-            List<Cluster> clusteredResult = kmeans.mainLoop(5, 5, parser.ParsedContent);
+            List<Cluster> clusteredResult = kmeans.mainLoop(5, 50, parser.ParsedContent);
 
             foreach (Cluster cluster in clusteredResult){
                 Console.WriteLine(clusteredResult.IndexOf(cluster).ToString() + " - " + cluster.Points.Count);
