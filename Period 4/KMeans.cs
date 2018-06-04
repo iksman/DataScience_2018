@@ -12,14 +12,12 @@ namespace Period_4{
             int currentIterations = 0;
             
             while (currentIterations != iterations){
-                //Having a hard time dividing the classes from their refference to extract only their content
-                //So that the OldCluster class isn't affected when the new cluster gets altered
-                List<int> count = new List<int>();
+                List<List<double>> oldCoordinates = new List<List<double>>();
                 foreach (Cluster cluster in clusters){
-                    count.Add(cluster.Points.Count);
+                    oldCoordinates.Add(cluster.Centroid.Coordinates);
                 }
                 step(data, clusters);
-                if (clusters.Select(c => c.Points.Count).ToList().SequenceEqual(count)){
+                if (clusters.Select(c => c.Centroid.Coordinates).ToList().SequenceEqual(oldCoordinates)){
                     currentIterations++;
                 }                
             }
@@ -55,7 +53,6 @@ namespace Period_4{
                 foreach (KeyValuePair<int,double> average in averages){
                     cluster.Centroid.Coordinates[average.Key] = average.Value;
                 }
-                //}
             }
 
             return clusters;
