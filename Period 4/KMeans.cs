@@ -8,21 +8,33 @@ namespace Period_4{
         }
 
         public List<Cluster> mainLoop(int centroidCount, int iterations, List<Vector> data){
-            List<Cluster> clusters = Statics.InitCluster(centroidCount, Statics.InitCentroids(centroidCount, data[0].Coordinates.Count));//Statics.InitCentroidsMark(centroidCount, data));
+            List<Cluster> resultClusters = new List<Cluster>();
             int currentIterations = 0;
             
             while (currentIterations != iterations){
-                List<List<double>> oldCoordinates = new List<List<double>>();
-                foreach (Cluster cluster in clusters){
-                    oldCoordinates.Add(cluster.Centroid.Coordinates);
+                List<Cluster> clusters = Statics.InitCluster(centroidCount, Statics.InitCentroids(centroidCount, data[0].Coordinates.Count));//Statics.InitCentroidsMark(centroidCount, data));
+
+                while (true){
+                    List<List<double>> oldCoordinates = new List<List<double>>();
+                    foreach (Cluster cluster in clusters){
+                        oldCoordinates.Add(cluster.Centroid.Coordinates);
+                    }
+                    step(data, clusters);
+                    if (clusters.Select(c => c.Centroid.Coordinates).ToList().SequenceEqual(oldCoordinates)){
+                        if (resultClusters.Count == 0){
+                            resultClusters = clusters;
+                        }else{
+                            if(SSE.CalculateSSE(resultClusters) > SSE.CalculateSSE(clusters)){
+                                resultClusters = clusters;
+                            }
+                        }
+                        break;
+                    }            
                 }
-                step(data, clusters);
-                if (clusters.Select(c => c.Centroid.Coordinates).ToList().SequenceEqual(oldCoordinates)){
-                    currentIterations++;
-                }                
+                currentIterations++;    
             }
             
-            return clusters;
+            return resultClusters;
         }
 
         public List<Cluster> step (List<Vector> data, List<Cluster> clusters){
