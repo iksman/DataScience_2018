@@ -26,7 +26,7 @@ namespace Period_4{
         foreach(List<double> product in content){
           coordinates.Add(product[i]);
         }
-        result.Add(new Vector(coordinates));
+        result.Add(new Vector(coordinates, i));
       }
       this.ParsedContent = result;
     }    

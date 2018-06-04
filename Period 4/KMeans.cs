@@ -8,7 +8,7 @@ namespace Period_4{
         }
 
         public List<Cluster> mainLoop(int centroidCount, int iterations, List<Vector> data){
-            List<Cluster> clusters = Statics.InitCluster(centroidCount, Statics.InitCentroids(centroidCount, data[0].Coordinates.Count));
+            List<Cluster> clusters = Statics.InitCluster(centroidCount, Statics.InitCentroidsMark(centroidCount, data));//Statics.InitCluster(centroidCount, Statics.InitCentroids(centroidCount, data[0].Coordinates.Count));
             int currentIterations = 0;
             
             while (currentIterations != iterations){
@@ -33,7 +33,9 @@ namespace Period_4{
             foreach (Vector point in data){
                 List<Tuple<int,double>> distances = new List<Tuple<int,double>>();
                 foreach (Cluster cluster in clusters){
-                    distances.Add(new Tuple<int, double>(cluster.Id, Euclidean.GetDistance(point, cluster.Centroid)));
+                    double distance = Euclidean.GetDistance(point, cluster.Centroid);
+                    distances.Add(new Tuple<int, double>(cluster.Id, distance));
+                    point.Distance = distance;
                 }
                 int bestClusterId = distances.OrderByDescending(d => d.Item2).First().Item1;
                 clusters.First(c => c.Id == bestClusterId).Points.Add(point);

@@ -9,29 +9,20 @@ namespace Period_4
         {
             Parser parser = new Parser("./WineData.csv");
             KMeans kmeans = new KMeans();
-            List<Cluster> clusteredResult = kmeans.mainLoop(5, 10, parser.ParsedContent);
+            int max = 100;
+            for (int i = 100; i < max + 1; i++){
+                List<Cluster> clusteredResult = kmeans.mainLoop(i, 10, parser.ParsedContent);
 
-            foreach (Cluster cluster in clusteredResult){
-                Console.WriteLine(clusteredResult.IndexOf(cluster).ToString() + " - " + cluster.Points.Count);
+                //foreach (Cluster cluster in clusteredResult){
+                //    Console.Write((cluster.Id + 1).ToString() + " - " + cluster.Points.Count.ToString() + " : ");
+                //    foreach (var point in cluster.Points){
+                //       Console.Write(point.Id.ToString() + ", ");
+                //    }
+                //    Console.WriteLine();
+                //}
+
+                Console.WriteLine("SSE with " + i.ToString() + " centroid(s): " + SSE.CalculateSSE(clusteredResult).ToString());
             }
-
-
-
-            //foreach (Centroid centroid in kmeans.centroids){
-            //    Console.Write(kmeans.centroids.IndexOf(centroid).ToString() + " - " + centroid.coordinate.Count.ToString() + " - ");
-            //    foreach (double coordinate in centroid.coordinate){
-            //        Console.Write(coordinate.ToString() + " ");
-            //    }
-            //    Console.WriteLine();                
-            //}
-
-            // foreach (Vector vector in parser.ParsedContent){
-            //     Console.Write(parser.ParsedContent.IndexOf(vector).ToString() + " - ");
-            //     foreach (double coordinate in vector.Coordinates){
-            //         Console.Write(coordinate.ToString() + " ");
-            //     }
-            //     Console.WriteLine();
-            // }
         }
     }
 }
