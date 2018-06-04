@@ -8,7 +8,7 @@ namespace Period_4{
         }
 
         public List<Cluster> mainLoop(int centroidCount, int iterations, List<Vector> data){
-            List<Cluster> clusters = Statics.InitCluster(centroidCount, Statics.InitCentroidsMark(centroidCount, data));//Statics.InitCluster(centroidCount, Statics.InitCentroids(centroidCount, data[0].Coordinates.Count));
+            List<Cluster> clusters = Statics.InitCluster(centroidCount, Statics.InitCentroids(centroidCount, data[0].Coordinates.Count));//Statics.InitCentroidsMark(centroidCount, data));
             int currentIterations = 0;
             
             while (currentIterations != iterations){
@@ -49,14 +49,16 @@ namespace Period_4{
                     for (int j=0; j < cluster.Points.Count; j++){
                         sum += cluster.Points[j].Coordinates[i];
                     }
-                    averages.Add(i, (sum/dimensions));
+                    if (sum != 0){
+                        averages.Add(i, (sum/cluster.Points.Count));
+                    }
+                    //cluster.Points.Where(p => p.Coordinates[i] != 0).Count()
                 }
 
                 foreach (KeyValuePair<int,double> average in averages){
                     cluster.Centroid.Coordinates[average.Key] = average.Value;
                 }
             }
-
             return clusters;
         }
     }

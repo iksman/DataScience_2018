@@ -7,10 +7,11 @@ namespace Period_4
     {
         static void Main(string[] args)
         {
-            Parser parser = new Parser("./WineData.csv");
-            KMeans kmeans = new KMeans();
+            
             int max = 100;
-            for (int i = 100; i < max + 1; i++){
+            for (int i = 1; i < max + 1; i++){
+                Parser parser = new Parser("./WineData.csv");
+                KMeans kmeans = new KMeans();
                 List<Cluster> clusteredResult = kmeans.mainLoop(i, 10, parser.ParsedContent);
 
                 //foreach (Cluster cluster in clusteredResult){
