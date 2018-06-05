@@ -13,7 +13,7 @@ namespace Period_4
                 result += Math.Pow((user1.Coordinates[i] - user2.Coordinates[i]),2);
             }
 
-            result = 1 / (1 + Math.Sqrt(result));
+            //result = Math.Sqrt(result);
 
             return result;
         }

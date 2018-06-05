@@ -9,7 +9,7 @@ namespace Period_4
         {
             
             int max = 100;
-            for (int i = 1; i < max + 1; i++){
+            for (int i = 2; i < max + 1; i++){
                 Parser parser = new Parser("./WineData.csv");
                 KMeans kmeans = new KMeans();
                 List<Cluster> clusteredResult = kmeans.mainLoop(i, 10, parser.ParsedContent);

@@ -22,5 +22,11 @@ namespace Period_4{
             Coordinates = coordinates;
             Id = id;
         }
+
+        public Vector(double coordinate, int id){
+            Coordinates = new List<double>();
+            Coordinates.Add(coordinate);
+            Id = id;
+        }
     }
 }

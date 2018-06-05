@@ -21,13 +21,22 @@ namespace Period_4{
       //Content is als het goed is nu een lijst van producten 
       //this.ParsedContent = this.parseContents(content);
 
+      Dictionary<int, Vector> intermediateResult = new Dictionary<int, Vector>();
       for (int i = 0; i < content[0].Count; i++){
-        List<double> coordinates = new List<double>();
-        foreach(List<double> product in content){
-          coordinates.Add(product[i]);
+        foreach (List<double> coordinates in content){
+          if (intermediateResult.ContainsKey(i)){
+            intermediateResult[i].Coordinates.Add(coordinates[i]);
+          }else{
+            intermediateResult.Add(i, new Vector(coordinates[i], i));
+          }          
         }
-        result.Add(new Vector(coordinates, i));
       }
+
+      //Colapse dict into list
+      foreach (var item in intermediateResult.OrderBy(i => i.Key)){
+        result.Add(item.Value);
+      }
+
       this.ParsedContent = result;
     }    
   }
